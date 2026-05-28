@@ -1,2 +1,12 @@
 .agents/
 skills-lock.json
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+frontend/.env
+backend/.env

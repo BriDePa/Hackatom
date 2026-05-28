@@ -1,0 +1,77 @@
+{
+  "app": {
+    "title": "IRRAFRESH",
+    "subtitle": "Inteligencia logistica post-cosecha impulsada por irradiacion",
+    "badge": "MVP cientifico",
+    "disclaimer": "Simulacion relativa. No reemplaza validacion industrial."
+  },
+  "controls": {
+    "title": "Parametros logisticos",
+    "product": "Producto",
+    "language": "Idioma",
+    "dose": "Dosis gamma",
+    "temperature": "Temperatura",
+    "humidity": "Humedad relativa",
+    "transport": "Horas de transporte",
+    "coldChain": "Falla de cadena de frio",
+    "simulate": "Simular escenario",
+    "tomato": "Tomate",
+    "strawberry": "Fresa",
+    "normal": "Operacion estable",
+    "failure": "Falla activa"
+  },
+  "dashboard": {
+    "quality": "Calidad restante",
+    "shelfLife": "Vida util estimada",
+    "loss": "Perdida estimada",
+    "confidence": "Confianza media",
+    "risk": "Riesgo logistico",
+    "curve": "Curva de deterioro",
+    "comparison": "Irradiado vs no irradiado",
+    "recommendations": "Recomendaciones",
+    "alerts": "Alertas dinamicas",
+    "modelNotes": "Notas del modelo",
+    "delta": "diferencia"
+  },
+  "confidence": {
+    "LOW": "Confianza baja",
+    "MEDIUM": "Confianza media",
+    "HIGH": "Confianza alta"
+  },
+  "units": {
+    "%": "%",
+    "days": "dias"
+  },
+  "risk": {
+    "LOW": "BAJO",
+    "MEDIUM": "MEDIO",
+    "HIGH": "ALTO"
+  },
+  "chart": {
+    "day": "Dia",
+    "irradiated": "Irradiado",
+    "nonIrradiated": "No irradiado",
+    "quality": "Calidad"
+  },
+  "recommendations": {
+    "restore_cold_chain": "Restaurar refrigeracion y priorizar inspeccion del lote.",
+    "reduce_temperature": "Reducir temperatura para disminuir deterioro relativo.",
+    "adjust_humidity": "Ajustar humedad hacia el rango optimo del producto.",
+    "evaluate_higher_dose": "Evaluar una dosis moderada mayor dentro de limites seguros.",
+    "shorten_transport_window": "Reducir ventana de transporte o agregar relevo logistico.",
+    "prioritize_fast_distribution": "Priorizar distribucion rapida y control de calidad.",
+    "scenario_within_operational_window": "Escenario dentro de una ventana operativa razonable."
+  },
+  "alerts": {
+    "cold_chain_failure_active": "Falla de cadena de frio activa: el deterioro se acelera en la simulacion.",
+    "none": "Sin alertas criticas para el escenario actual."
+  },
+  "notes": {
+    "simplified_exponential_decay": "Deterioro exponencial simplificado.",
+    "relative_risk_not_industrial_prediction": "Analisis relativo, no prediccion industrial exacta.",
+    "ranges_include_operational_uncertainty": "Los rangos incluyen incertidumbre operativa."
+  },
+  "errors": {
+    "simulation_failed": "No se pudo ejecutar la simulacion. Usando datos mock para demo."
+  }
+}

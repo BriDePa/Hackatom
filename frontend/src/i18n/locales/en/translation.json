@@ -1,0 +1,77 @@
+{
+  "app": {
+    "title": "IRRAFRESH",
+    "subtitle": "Irradiation-powered post-harvest logistics intelligence",
+    "badge": "Scientific MVP",
+    "disclaimer": "Relative simulation. It does not replace industrial validation."
+  },
+  "controls": {
+    "title": "Logistics parameters",
+    "product": "Product",
+    "language": "Language",
+    "dose": "Gamma dose",
+    "temperature": "Temperature",
+    "humidity": "Relative humidity",
+    "transport": "Transport hours",
+    "coldChain": "Cold chain failure",
+    "simulate": "Simulate scenario",
+    "tomato": "Tomato",
+    "strawberry": "Strawberry",
+    "normal": "Stable operation",
+    "failure": "Active failure"
+  },
+  "dashboard": {
+    "quality": "Remaining quality",
+    "shelfLife": "Estimated shelf life",
+    "loss": "Estimated loss",
+    "confidence": "Medium confidence",
+    "risk": "Logistics risk",
+    "curve": "Deterioration curve",
+    "comparison": "Irradiated vs non-irradiated",
+    "recommendations": "Recommendations",
+    "alerts": "Dynamic alerts",
+    "modelNotes": "Model notes",
+    "delta": "delta"
+  },
+  "confidence": {
+    "LOW": "Low confidence",
+    "MEDIUM": "Medium confidence",
+    "HIGH": "High confidence"
+  },
+  "units": {
+    "%": "%",
+    "days": "days"
+  },
+  "risk": {
+    "LOW": "LOW",
+    "MEDIUM": "MEDIUM",
+    "HIGH": "HIGH"
+  },
+  "chart": {
+    "day": "Day",
+    "irradiated": "Irradiated",
+    "nonIrradiated": "Non-irradiated",
+    "quality": "Quality"
+  },
+  "recommendations": {
+    "restore_cold_chain": "Restore refrigeration and prioritize lot inspection.",
+    "reduce_temperature": "Reduce temperature to slow relative deterioration.",
+    "adjust_humidity": "Adjust humidity toward the product's optimal range.",
+    "evaluate_higher_dose": "Evaluate a higher moderate dose within safe limits.",
+    "shorten_transport_window": "Shorten the transport window or add a logistics relay.",
+    "prioritize_fast_distribution": "Prioritize fast distribution and quality control.",
+    "scenario_within_operational_window": "Scenario is within a reasonable operating window."
+  },
+  "alerts": {
+    "cold_chain_failure_active": "Cold chain failure active: deterioration accelerates in the simulation.",
+    "none": "No critical alerts for the current scenario."
+  },
+  "notes": {
+    "simplified_exponential_decay": "Simplified exponential decay.",
+    "relative_risk_not_industrial_prediction": "Relative analysis, not an exact industrial prediction.",
+    "ranges_include_operational_uncertainty": "Ranges include operational uncertainty."
+  },
+  "errors": {
+    "simulation_failed": "Simulation could not run. Using mock demo data."
+  }
+}
