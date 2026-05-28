@@ -24,6 +24,7 @@ export function ProductSelector({ value, onChange }: ProductSelectorProps) {
       >
         <option value="tomato">{t("controls.tomato")}</option>
         <option value="strawberry">{t("controls.strawberry")}</option>
+        <option value="potato">{t("controls.potato")}</option>
       </select>
     </label>
   );

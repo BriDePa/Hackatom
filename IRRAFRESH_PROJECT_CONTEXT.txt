@@ -1,0 +1,746 @@
+IRRAFRESH / PHASE PROJECT CONTEXT
+Ultima actualizacion: 2026-05-28
+
+============================================================
+ACTUALIZACION AUTORITATIVA — PHASE
+============================================================
+
+PHASE significa Post-Harvest Analysis & Simulation Engine.
+
+PHASE es la evolucion del motor de simulacion de IRRAFRESH. Mantiene la misma
+arquitectura MVP, pero refuerza el enfoque cientifico: separa parametros
+biologicos internos de parametros operativos del usuario, usa perfiles
+logisticos abstractos, agrega eventos dinamicos y mejora la lectura como
+Decision Support System.
+
+Cambios PHASE implementados:
+- Producto nuevo: papa.
+- Los parametros cientificos de tomate, fresa y papa se cargan desde datasets
+  internos JSON/CSV y no se editan desde la UI.
+- Las rutas reales fueron reemplazadas por perfiles logisticos abstractos:
+  optimal_cold_chain, export_stress y ambient_long_distance.
+- El usuario modifica parametros operativos: producto, dosis, temperatura,
+  humedad, duracion, tipo de transporte, almacenamiento refrigerado y eventos.
+- Eventos dinamicos agregados: falla de refrigeracion, retraso de transporte,
+  exposicion termica y almacenamiento prolongado.
+- Escenarios rapidos agregados: Optimal Cold Chain, Export Stress Scenario,
+  Refrigeration Failure, High Humidity Storage y Long Distance Transport.
+- El motor recalcula deterioro, riesgo, economia, alertas y timeline de eventos.
+- La UI ahora muestra un timeline visual de eventos logisticos.
+
+Esta seccion supersede cualquier referencia anterior a rutas reales especificas
+como parte del modelo activo. Esas rutas ya no son el enfoque del sistema.
+
+============================================================
+PROPOSITO DEL DOCUMENTO
+============================================================
+
+Este archivo resume detalladamente el estado actual del proyecto IRRAFRESH.
+Su objetivo es dar contexto completo a otras IAs, personas tecnicas, jurados
+de hackathon o colaboradores que necesiten entender que se esta construyendo,
+por que existe, como esta organizado y que decisiones tecnicas ya se tomaron.
+
+Este documento debe actualizarse cada vez que se agregue, modifique o elimine
+una parte relevante del proyecto.
+
+============================================================
+IDENTIDAD DEL PROYECTO
+============================================================
+
+Nombre:
+IRRAFRESH / PHASE
+
+Nombre completo:
+IRRAFRESH - Inteligencia Logistica Post-Cosecha Impulsada por Irradiacion
+
+Motor:
+PHASE - Post-Harvest Analysis & Simulation Engine
+
+Definicion corta:
+Plataforma de simulacion y soporte de decisiones para logistica post-cosecha
+de alimentos irradiados.
+
+Tipo de producto:
+MVP de hackathon cientifico/tecnologico.
+
+Dominio:
+- Agritech
+- Nuclear-tech aplicada a alimentos
+- Logistica post-cosecha
+- Simulacion cientifica exploratoria
+- Decision Support Systems (DSS)
+
+============================================================
+POSICIONAMIENTO CORRECTO
+============================================================
+
+IRRAFRESH ES:
+- Una plataforma web de simulacion cientifica.
+- Un sistema DSS agricola.
+- Un prototipo exploratorio cientificamente coherente.
+- Un gemelo digital simplificado de un lote agricola durante transporte.
+- Una herramienta para comparar escenarios logisticos post-cosecha.
+- Un dashboard agritech/nuclear-tech listo para demo de hackathon.
+- Un motor dinamico de simulacion post-cosecha.
+
+IRRAFRESH NO ES:
+- Un predictor exacto de shelf-life.
+- Un sistema certificado de inocuidad alimentaria.
+- Un modelo industrial validado.
+- Una IA real de prediccion.
+- Un simulador fisico nuclear.
+- Un reemplazo para laboratorio, normativa o validacion industrial.
+
+Mensaje clave:
+El proyecto vende "simulacion comparativa cientificamente inspirada", no
+"prediccion exacta".
+
+============================================================
+OBJETIVO DEL MVP
+============================================================
+
+El usuario debe poder:
+
+1. Seleccionar un producto agricola.
+2. Seleccionar un perfil logistico abstracto.
+3. Configurar dosis de irradiacion gamma.
+4. Configurar temperatura y humedad.
+5. Configurar horas de transporte.
+6. Simular falla de cadena de frio por un numero de horas.
+7. Simular retrasos, exposicion termica y almacenamiento prolongado.
+8. Seleccionar tipo de transporte y almacenamiento refrigerado.
+9. Aplicar escenarios rapidos predefinidos.
+10. Definir valor economico estimado del lote.
+11. Simular deterioro en el tiempo.
+12. Visualizar calidad restante en rangos.
+13. Comparar irradiado vs no irradiado.
+14. Visualizar riesgo logistico relativo.
+15. Ver bandas de incertidumbre.
+16. Ver impacto economico estimado.
+17. Ver ahorro potencial asociado a irradiacion.
+18. Recibir recomendaciones visuales.
+
+============================================================
+STACK TECNOLOGICO
+============================================================
+
+Frontend:
+- React
+- Vite
+- TypeScript
+- TailwindCSS
+- Recharts
+- Framer Motion
+- react-i18next
+- lucide-react
+
+Backend:
+- FastAPI
+- Pydantic
+- NumPy
+- Pandas
+
+Datos:
+- CSV
+- JSON
+
+No se agregaron:
+- Login/autenticacion
+- Base de datos compleja
+- Microservicios
+- Docker
+- Kubernetes
+- Machine learning real
+- APIs externas en runtime
+- Mapas
+- Tiempo real real
+
+============================================================
+ESTRUCTURA ACTUAL DEL PROYECTO
+============================================================
+
+Raiz:
+- README.md
+- IRRAFRESH_PROJECT_CONTEXT.txt
+- docs/
+- backend/
+- frontend/
+
+Documentacion:
+- docs/scientific-model.md
+  Explica posicionamiento cientifico, modelo matematico, riesgo, economia,
+  incertidumbre, fuentes y estrategia de validacion.
+
+- docs/pitch.md
+  Resume narrativa de demo, propuesta de valor y que es/no es IRRAFRESH.
+
+Backend:
+- backend/app/main.py
+  Declara la app FastAPI y CORS.
+
+- backend/app/api/routes.py
+  Expone endpoints:
+  - GET /health
+  - GET /products
+  - GET /routes
+  - POST /simulate
+
+- backend/app/models/simulation.py
+  Define contratos Pydantic para request/response.
+
+- backend/app/services/simulation_engine.py
+  Contiene el motor cientifico simplificado:
+  - deterioro dinamico k(t)
+  - curva de calidad
+  - riesgo relativo
+  - falla de cadena de frio
+  - perdida economica
+  - ahorro potencial
+  - incertidumbre
+
+- backend/app/services/product_repository.py
+  Carga productos desde JSON y valida existencia de CSV editable.
+
+- backend/app/services/route_repository.py
+  Carga rutas logisticas desde JSON.
+
+- backend/data/products.csv
+  Vista tabular editable de parametros por alimento.
+
+- backend/data/products.json
+  Parametros ricos por alimento, incluyendo:
+  - vida util base
+  - temperatura optima
+  - humedad optima
+  - sensibilidad respiratoria
+  - sensibilidad microbiana
+  - respuesta a irradiacion
+  - deterioro base
+  - valor economico por kg
+  - sensibilidad al transporte
+  - base literaria
+
+- backend/data/routes.json
+  Parametros logisticos abstractos por perfil:
+  - duracion
+  - temperatura promedio
+  - refrigeracion
+  - riesgo de retraso
+  - estabilidad termica
+  - estres logistico
+
+Frontend:
+- frontend/src/App.tsx
+  Dashboard principal de una sola pagina.
+
+- frontend/src/types/simulation.ts
+  Tipos TypeScript equivalentes al contrato de la API.
+
+- frontend/src/lib/api.ts
+  Cliente HTTP para POST /simulate.
+
+- frontend/src/lib/mock-data.ts
+  Datos fallback para demo si la API no responde.
+
+- frontend/src/i18n/
+  Configuracion de react-i18next.
+
+- frontend/src/i18n/locales/es/translation.json
+  Traducciones en espanol.
+
+- frontend/src/i18n/locales/en/translation.json
+  Traducciones en ingles.
+
+- frontend/src/i18n/locales/ru/translation.json
+  Traducciones en ruso.
+
+Componentes principales:
+- ProductSelector
+- LanguageSelector
+- DoseSlider
+- TemperatureSlider
+- HumiditySlider
+- TransportSelector
+- EventTimeline
+- RiskCard
+- QualityChart
+- ScenarioComparison
+- RecommendationCard
+- ColdChainAlert
+- EconomicImpact
+- SimulationIntelligence
+
+============================================================
+MODELO CIENTIFICO ACTUAL
+============================================================
+
+El modelo representa tendencias relativas de deterioro post-cosecha.
+
+Indice de calidad:
+Q representa un indice compuesto simplificado de:
+- frescura
+- estabilidad microbiologica
+- valor comercial
+- integridad post-cosecha
+
+No es una medicion de laboratorio.
+
+Modelo base:
+Q(t) = Q0 * exp(-k(t) * t)
+
+k no es constante. El sistema usa deterioro dinamico:
+k(t) = k0 + a*T + b*H - c*D + r*L
+
+Interpretacion:
+- mayor temperatura aumenta deterioro
+- mayor humedad aumenta presion microbiologica
+- mayor irradiacion reduce deterioro relativo
+- mayor estres logistico aumenta deterioro
+- una falla de cadena de frio aumenta temporalmente k(t)
+
+Variables conceptuales:
+- k0: deterioro base por alimento
+- T: presion de temperatura
+- H: presion de humedad
+- D: dosis gamma
+- L: estres logistico
+- r: sensibilidad del producto al transporte
+
+============================================================
+MODELO DE RIESGO
+============================================================
+
+El sistema calcula una presion de riesgo relativa:
+
+R = w1*T + w2*t + w3*L - w4*D
+
+Salida visible:
+- LOW / BAJO
+- MEDIUM / MEDIO
+- HIGH / ALTO
+
+El sistema evita falsa precision:
+- No muestra "17.382% de riesgo".
+- Usa rangos, indices relativos y niveles categoricos.
+
+============================================================
+MODELO DE FALLA DE CADENA DE FRIO
+============================================================
+
+El usuario puede activar:
+cold_chain_failure = true
+
+Tambien puede definir:
+cold_chain_failure_hours
+
+Efecto:
+- Durante ese evento, k(t) aumenta temporalmente.
+- La curva de deterioro se recalcula.
+- El riesgo relativo aumenta.
+- El dashboard muestra alerta visual.
+- Los puntos de la curva incluyen cold_chain_event.
+
+Ejemplo conceptual:
+"Cold chain failure during 6 hours."
+
+============================================================
+MODELO ECONOMICO
+============================================================
+
+El sistema calcula perdida estimada:
+
+Loss = P * (1 - Q(t)/Q0)
+
+Donde:
+- P = valor estimado del lote
+- Q(t) = calidad simulada en el momento logistico
+- Q0 = calidad inicial
+
+Tambien calcula:
+- perdida estimada del escenario irradiado
+- perdida estimada relativa del escenario no irradiado
+- ahorro potencial por irradiacion
+
+Todos estos valores se muestran como rangos.
+
+============================================================
+INCERTIDUMBRE
+============================================================
+
+El sistema comunica incertidumbre mediante:
+- rangos de calidad
+- rangos de vida util
+- rangos de perdida economica
+- bandas de incertidumbre en curva
+- nivel de confianza
+
+Niveles:
+- LOW
+- MEDIUM
+- HIGH
+
+En la practica actual, el sistema tiende a usar confianza media o baja
+segun severidad logistica, porque el modelo es exploratorio.
+
+============================================================
+PRODUCTOS SOPORTADOS
+============================================================
+
+1. Tomate
+2. Fresa
+
+Cada producto tiene parametros independientes.
+No comparten el mismo comportamiento matematico.
+
+Tomate:
+- Vida util base mayor.
+- Sensibilidad respiratoria y microbiana moderada.
+- Temperatura optima aproximada: 12 C.
+- Humedad optima aproximada: 85%.
+
+Fresa:
+- Vida util base menor.
+- Sensibilidad respiratoria y microbiana alta.
+- Temperatura optima aproximada: 4 C.
+- Humedad optima aproximada: 90%.
+
+Papa:
+- Vida util base mayor.
+- Sensibilidad respiratoria baja.
+- Alta respuesta relativa a irradiacion por control de brotacion.
+- Temperatura optima aproximada: 10 C.
+- Humedad optima aproximada: 92%.
+
+============================================================
+PERFILES LOGISTICOS SOPORTADOS
+============================================================
+
+No se usan rutas reales especificas en la simulacion activa. Se usan perfiles
+abstractos para que el sistema sea mas flexible, general y defendible
+cientificamente.
+
+1. Optimal Cold Chain
+2. Export Stress Scenario
+3. Long Distance Transport
+
+Cada perfil incluye:
+- duracion estimada
+- temperatura promedio
+- si tiene refrigeracion
+- riesgo de retraso
+- estabilidad termica
+- estres logistico
+
+Tipos de transporte operativos:
+- refrigerated_truck
+- ambient_truck
+- mixed_cargo
+- air_cargo
+
+Eventos logisticos operativos:
+- cold_chain_failure
+- delay_hours
+- thermal_exposure_hours
+- extended_storage_hours
+
+Escenarios rapidos en UI:
+- Optimal Cold Chain
+- Export Stress Scenario
+- Refrigeration Failure
+- High Humidity Storage
+- Long Distance Transport
+
+============================================================
+API PRINCIPAL
+============================================================
+
+Endpoint:
+POST /simulate
+
+Input actual:
+{
+  "product": "tomato",
+  "route_id": "optimal_cold_chain",
+  "dose": 1.2,
+  "temperature": 8,
+  "humidity": 82,
+  "transport_hours": 36,
+  "transport_type": "refrigerated_truck",
+  "refrigerated_storage": true,
+  "cold_chain_failure": false,
+  "cold_chain_failure_hours": 6,
+  "delay_hours": 0,
+  "thermal_exposure_hours": 0,
+  "extended_storage_hours": 0,
+  "lot_value_usd": 2500
+}
+
+Output actual incluye:
+- product
+- route
+- risk_level
+- risk_pressure
+- remaining_quality
+- estimated_shelf_life_range
+- estimated_loss_percentage
+- estimated_loss_value
+- potential_savings_value
+- logistics_stress
+- microbial_reduction_index
+- confidence
+- recommendations
+- quality_curve
+- cold_chain_alert
+- digital_twin_summary
+- model_notes
+
+============================================================
+VISUALIZACIONES ACTUALES
+============================================================
+
+Dashboard actual incluye:
+
+- Panel izquierdo con controles:
+  - idioma
+  - producto
+  - dosis gamma
+  - temperatura
+  - humedad
+  - escenarios rapidos
+  - perfil logistico abstracto
+  - tipo de transporte
+  - horas de transporte
+  - valor del lote
+  - almacenamiento refrigerado
+  - falla de cadena de frio
+  - horas de falla
+  - horas de retraso
+  - horas de exposicion termica
+  - horas de almacenamiento prolongado
+
+- Panel derecho con:
+  - calidad restante
+  - vida util estimada
+  - perdida estimada
+  - confianza
+  - curva de deterioro
+  - comparacion irradiado/no irradiado
+  - riesgo logistico
+  - gemelo digital simplificado
+  - estres logistico
+  - reduccion microbiana relativa
+  - impacto economico
+  - ahorro potencial
+  - alertas
+  - timeline de eventos logisticos
+  - notas del modelo
+  - recomendaciones
+
+============================================================
+MULTIIDIOMA
+============================================================
+
+La aplicacion soporta:
+- Espanol
+- Ingles
+- Ruso
+
+Espanol es el idioma por defecto.
+
+Todos los textos nuevos relevantes del dashboard estan traducidos:
+- controles
+- rutas
+- metricas
+- recomendaciones
+- notas del modelo
+- alertas
+- pitch cientifico
+- gemelo digital
+- economia
+- grafico
+
+Archivos:
+- frontend/src/i18n/locales/es/translation.json
+- frontend/src/i18n/locales/en/translation.json
+- frontend/src/i18n/locales/ru/translation.json
+
+============================================================
+DISEÑO Y UX
+============================================================
+
+Estilo visual:
+- dark mode
+- dashboard cientifico
+- agritech
+- nuclear-tech
+- acentos verde neon y cyan
+- tarjetas compactas
+- graficos animados
+- transiciones suaves
+
+Objetivo UX:
+Que se perciba como plataforma inteligente de simulacion, no como formulario
+universitario ni calculadora con sliders.
+
+============================================================
+FUENTES Y BASE CIENTIFICA
+============================================================
+
+Las decisiones de direccion cientifica se basan en tendencias reportadas por:
+- IAEA
+- FAO
+- WHO
+- FDA/USDA
+- literatura de shelf-life
+- estudios de irradiacion gamma en frutas
+- estudios de manejo post-cosecha
+- estudios de cadena de frio
+
+Referencias documentadas:
+- https://www.iaea.org/topics/food-irradiation
+- https://www.iaea.org/publications/7629/use-of-irradiation-to-ensure-hygienic-quality-of-fresh-pre-cut-fruits-and-vegetables-and-other-minimally-processed-food-of-plant-origin
+- https://iris.who.int/handle/10665/38544
+- https://www.fda.gov/food/buy-store-serve-safe-food/food-irradiation-what-you-need-know
+- https://www.fao.org/4/y5431e/y5431e04.htm
+- https://www.fao.org/4/x5403e/x5403e08.htm
+- https://www.fao.org/4/y4358e/y4358e05.htm
+
+============================================================
+VALIDACIONES REALIZADAS
+============================================================
+
+Se ejecutaron validaciones:
+
+1. JSON valido:
+   - backend/data/products.json
+   - backend/data/routes.json
+   - frontend/src/i18n/locales/es/translation.json
+   - frontend/src/i18n/locales/en/translation.json
+   - frontend/src/i18n/locales/ru/translation.json
+
+2. Python compileall:
+   - backend/app
+
+3. Build frontend:
+   - npm.cmd run build
+
+4. TestClient de FastAPI:
+   - POST /simulate con ruta
+   - valor economico
+   - falla de cadena de frio
+   - respuesta 200
+   - salida con riesgo, ruta, perdida economica, ahorro y curva
+
+Nota:
+Vite muestra warning de chunk grande por Recharts. Es aceptable para MVP.
+
+============================================================
+COMANDOS DE DESARROLLO
+============================================================
+
+Backend:
+cd backend
+.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+
+Frontend:
+cd frontend
+npm.cmd run dev -- --host 127.0.0.1 --port 5173
+
+Build frontend:
+cd frontend
+npm.cmd run build
+
+Validacion backend:
+backend\.venv\Scripts\python.exe -m compileall backend\app
+
+============================================================
+ESTADO ACTUAL DE IMPLEMENTACION
+============================================================
+
+Estado:
+MVP funcional y extendido cientificamente como PHASE.
+
+Implementado:
+- arquitectura frontend/backend
+- simulacion interactiva
+- i18n ES/EN/RU
+- datasets por producto
+- datasets por perfil logistico abstracto
+- producto papa
+- escenarios rapidos
+- tipo de transporte
+- almacenamiento refrigerado
+- retrasos, exposicion termica y almacenamiento prolongado
+- k(t) dinamico
+- riesgo relativo
+- cadena de frio temporal
+- economia
+- incertidumbre
+- gemelo digital conceptual
+- documentacion cientifica
+- pitch tecnico
+
+Pendiente posible para futuras iteraciones:
+- cargar productos/perfiles logisticos dinamicamente desde API en frontend
+- agregar exportacion de reporte PDF/CSV
+- agregar mas productos
+- agregar mas perfiles logisticos abstractos
+- mejorar code splitting para reducir warning de bundle
+- agregar tests automatizados unitarios para simulation_engine
+- agregar pantalla de "scientific assumptions"
+- agregar modo comparador multi-escenario lado a lado
+
+============================================================
+PROTOCOLO PARA ACTUALIZAR ESTE ARCHIVO
+============================================================
+
+Actualizar este archivo cuando cambie cualquiera de estas cosas:
+
+- endpoints
+- contratos request/response
+- modelos matematicos
+- datasets
+- parametros cientificos
+- componentes principales
+- estructura de carpetas
+- comandos de ejecucion
+- validaciones
+- fuentes cientificas
+- alcance del MVP
+- decisiones de producto
+
+Al actualizar:
+1. Mantener lenguaje claro para humanos e IAs.
+2. Evitar claims de prediccion exacta.
+3. Indicar si el cambio afecta frontend, backend, datos o documentacion.
+4. Mantener la narrativa de "simulacion comparativa cientificamente inspirada".
+5. Registrar cambios importantes en la seccion siguiente.
+
+============================================================
+HISTORIAL DE CAMBIOS DEL CONTEXTO
+============================================================
+
+2026-05-28:
+- Se creo el MVP full-stack inicial con React, Vite, Tailwind, Recharts,
+  Framer Motion, FastAPI, Pydantic, NumPy y Pandas.
+- Se agrego soporte multiidioma ES/EN/RU desde el inicio.
+- Se implemento endpoint POST /simulate.
+- Se agregaron productos iniciales: tomate y fresa.
+- Se agrego modelo exponencial de deterioro con rangos e incertidumbre.
+- Se actualizo el modelo a k(t) dinamico con temperatura, humedad, dosis y
+  estres logistico.
+- Se agrego riesgo relativo DSS.
+- Se agrego falla temporal de cadena de frio.
+- Se agrego modelo economico de perdida y ahorro potencial.
+- Se agregaron datasets products.json y routes.json.
+- Se agregaron visualizaciones de gemelo digital, economia y bandas de
+  incertidumbre.
+- Se agrego documentacion cientifica y pitch.
+- Se creo este archivo de contexto integral.
+- Se actualizo IRRAFRESH hacia PHASE (Post-Harvest Analysis & Simulation Engine).
+- Se separaron parametros cientificos internos de parametros operativos del usuario.
+- Se reemplazaron rutas reales por perfiles logisticos abstractos.
+- Se agrego producto papa.
+- Se agregaron eventos logisticos: retraso, exposicion termica y almacenamiento prolongado.
+- Se agregaron escenarios rapidos de demo.
+- Se agrego timeline visual de eventos logisticos.

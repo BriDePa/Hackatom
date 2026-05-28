@@ -10,10 +10,13 @@ import { ProductSelector } from "./components/controls/ProductSelector";
 import { TemperatureSlider } from "./components/controls/TemperatureSlider";
 import { TransportSelector } from "./components/controls/TransportSelector";
 import { ColdChainAlert } from "./components/dashboard/ColdChainAlert";
+import { EconomicImpact } from "./components/dashboard/EconomicImpact";
+import { EventTimeline } from "./components/dashboard/EventTimeline";
 import { QualityChart } from "./components/dashboard/QualityChart";
 import { RecommendationCard } from "./components/dashboard/RecommendationCard";
 import { RiskCard } from "./components/dashboard/RiskCard";
 import { ScenarioComparison } from "./components/dashboard/ScenarioComparison";
+import { SimulationIntelligence } from "./components/dashboard/SimulationIntelligence";
 import { Card } from "./components/ui/card";
 import { simulateScenario } from "./lib/api";
 import { fallbackSimulation } from "./lib/mock-data";
@@ -21,12 +24,88 @@ import type { SimulationInput, SimulationResponse } from "./types/simulation";
 
 const initialInput: SimulationInput = {
   product: "tomato",
+  route_id: "optimal_cold_chain",
   dose: 1.4,
   temperature: 8,
   humidity: 82,
   transport_hours: 36,
+  transport_type: "refrigerated_truck",
+  refrigerated_storage: true,
   cold_chain_failure: false,
+  cold_chain_failure_hours: 6,
+  delay_hours: 0,
+  thermal_exposure_hours: 0,
+  extended_storage_hours: 0,
+  lot_value_usd: 2500,
 };
+
+const scenarioPresets: Array<{ key: string; input: Partial<SimulationInput> }> = [
+  {
+    key: "optimalColdChain",
+    input: {
+      route_id: "optimal_cold_chain",
+      transport_type: "refrigerated_truck",
+      refrigerated_storage: true,
+      temperature: 4,
+      humidity: 88,
+      transport_hours: 18,
+      cold_chain_failure: false,
+      delay_hours: 0,
+      thermal_exposure_hours: 0,
+      extended_storage_hours: 0,
+    },
+  },
+  {
+    key: "exportStress",
+    input: {
+      route_id: "export_stress",
+      transport_type: "mixed_cargo",
+      refrigerated_storage: true,
+      temperature: 14,
+      humidity: 82,
+      transport_hours: 54,
+      delay_hours: 10,
+      thermal_exposure_hours: 2,
+    },
+  },
+  {
+    key: "refrigerationFailure",
+    input: {
+      route_id: "export_stress",
+      transport_type: "refrigerated_truck",
+      refrigerated_storage: false,
+      temperature: 18,
+      humidity: 84,
+      cold_chain_failure: true,
+      cold_chain_failure_hours: 8,
+      thermal_exposure_hours: 4,
+    },
+  },
+  {
+    key: "highHumidityStorage",
+    input: {
+      route_id: "optimal_cold_chain",
+      humidity: 96,
+      temperature: 10,
+      extended_storage_hours: 48,
+      delay_hours: 0,
+      thermal_exposure_hours: 0,
+    },
+  },
+  {
+    key: "longDistanceTransport",
+    input: {
+      route_id: "ambient_long_distance",
+      transport_type: "ambient_truck",
+      refrigerated_storage: false,
+      temperature: 22,
+      humidity: 78,
+      transport_hours: 96,
+      delay_hours: 12,
+      thermal_exposure_hours: 6,
+    },
+  },
+];
 
 function App() {
   const { t } = useTranslation();
@@ -91,6 +170,11 @@ function App() {
     [simulation, t],
   );
 
+  const handleFormatRange = useCallback(
+    (min: number, max: number, unit: string) => formatRange(min, max, unit, t),
+    [t],
+  );
+
   return (
     <main className="min-h-screen p-4 text-emerald-50 md:p-6">
       <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[380px_minmax(0,1fr)]">
@@ -116,6 +200,21 @@ function App() {
               value={input.product}
               onChange={(product) => setInput((current) => ({ ...current, product }))}
             />
+            <div className="grid gap-2">
+              <p className="text-sm text-emerald-50/80">{t("controls.quickScenarios")}</p>
+              <div className="grid grid-cols-1 gap-2">
+                {scenarioPresets.map((preset) => (
+                  <button
+                    key={preset.key}
+                    type="button"
+                    onClick={() => setInput((current) => ({ ...current, ...preset.input }))}
+                    className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-left text-sm text-emerald-50/80 transition hover:border-bio/40 hover:text-bio"
+                  >
+                    {t(`scenarios.${preset.key}`)}
+                  </button>
+                ))}
+              </div>
+            </div>
             <DoseSlider value={input.dose} onChange={(dose) => setInput((current) => ({ ...current, dose }))} />
             <TemperatureSlider
               value={input.temperature}
@@ -127,8 +226,32 @@ function App() {
             />
             <TransportSelector
               value={input.transport_hours}
+              routeId={input.route_id}
+              transportType={input.transport_type}
+              refrigeratedStorage={input.refrigerated_storage}
+              lotValue={input.lot_value_usd}
+              coldChainFailureHours={input.cold_chain_failure_hours}
+              delayHours={input.delay_hours}
+              thermalExposureHours={input.thermal_exposure_hours}
+              extendedStorageHours={input.extended_storage_hours}
               coldChainFailure={input.cold_chain_failure}
+              onRouteChange={(route_id) => setInput((current) => ({ ...current, route_id }))}
+              onTransportTypeChange={(transport_type) => setInput((current) => ({ ...current, transport_type }))}
+              onRefrigeratedStorageChange={(refrigerated_storage) =>
+                setInput((current) => ({ ...current, refrigerated_storage }))
+              }
               onTransportChange={(transport_hours) => setInput((current) => ({ ...current, transport_hours }))}
+              onLotValueChange={(lot_value_usd) => setInput((current) => ({ ...current, lot_value_usd }))}
+              onColdChainHoursChange={(cold_chain_failure_hours) =>
+                setInput((current) => ({ ...current, cold_chain_failure_hours }))
+              }
+              onDelayHoursChange={(delay_hours) => setInput((current) => ({ ...current, delay_hours }))}
+              onThermalExposureHoursChange={(thermal_exposure_hours) =>
+                setInput((current) => ({ ...current, thermal_exposure_hours }))
+              }
+              onExtendedStorageHoursChange={(extended_storage_hours) =>
+                setInput((current) => ({ ...current, extended_storage_hours }))
+              }
               onColdChainChange={(cold_chain_failure) =>
                 setInput((current) => ({ ...current, cold_chain_failure }))
               }
@@ -169,8 +292,14 @@ function App() {
             </div>
           </div>
 
+          <SimulationIntelligence simulation={simulation} formatRange={handleFormatRange} />
+          <EventTimeline data={simulation.quality_curve} />
+
           <div className="grid gap-5 xl:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-            <RecommendationCard recommendations={simulation.recommendations} />
+            <div className="grid gap-5">
+              <EconomicImpact simulation={simulation} formatRange={handleFormatRange} />
+              <RecommendationCard recommendations={simulation.recommendations} />
+            </div>
             <div className="grid gap-5">
               <ColdChainAlert alert={simulation.cold_chain_alert} />
               <Card className="p-5">

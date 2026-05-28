@@ -1,3 +1,4 @@
+import json
 from functools import lru_cache
 from pathlib import Path
 
@@ -5,30 +6,31 @@ import pandas as pd
 from pydantic import BaseModel
 
 
-DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "products.csv"
+CSV_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "products.csv"
+JSON_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "products.json"
 
 
 class ProductProfile(BaseModel):
     id: str
-    name_es: str
-    name_en: str
-    name_ru: str
-    k0: float
-    a: float
-    b: float
-    c: float
-    baseline_shelf_days: int
-    safe_temperature: float
-    ideal_humidity: float
+    name: dict[str, str]
+    base_shelf_life_days: int
+    optimal_temperature: float
+    optimal_humidity: float
+    respiration_factor: float
+    microbial_sensitivity: float
+    irradiation_sensitivity: float
+    base_k: float
+    economic_value_per_kg: float
+    transport_sensitivity: float
+    literature_basis: list[str]
 
 
 @lru_cache
 def load_products() -> dict[str, ProductProfile]:
-    frame = pd.read_csv(DATA_PATH)
-    return {
-        row["id"]: ProductProfile(**row.to_dict())
-        for _, row in frame.iterrows()
-    }
+    pd.read_csv(CSV_DATA_PATH)
+    with JSON_DATA_PATH.open(encoding="utf-8") as file:
+        rows = json.load(file)
+    return {row["id"]: ProductProfile(**row) for row in rows}
 
 
 def get_product(product_id: str) -> ProductProfile:

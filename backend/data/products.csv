@@ -1,3 +1,4 @@
-id,name_es,name_en,name_ru,k0,a,b,c,baseline_shelf_days,safe_temperature,ideal_humidity
-tomato,Tomate,Tomato,Томат,0.018,0.0017,0.00042,0.0060,20,10,82
-strawberry,Fresa,Strawberry,Клубника,0.035,0.0028,0.00060,0.0085,9,4,90
+id,name_es,name_en,base_shelf_life_days,optimal_temperature,optimal_humidity,respiration_factor,microbial_sensitivity,irradiation_sensitivity,base_k,economic_value_per_kg,transport_sensitivity
+tomato,Tomate,Tomato,12,12,85,0.46,0.52,0.48,0.028,2.5,0.62
+strawberry,Fresa,Strawberry,6,4,90,0.78,0.82,0.64,0.052,4.2,0.84
+potato,Papa,Potato,45,10,92,0.24,0.34,0.72,0.014,1.4,0.38

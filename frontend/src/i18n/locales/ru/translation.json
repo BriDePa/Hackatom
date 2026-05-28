@@ -1,24 +1,55 @@
 {
   "app": {
-    "title": "IRRAFRESH",
-    "subtitle": "Логистическая аналитика после сбора урожая на основе облучения",
-    "badge": "Научный MVP",
+    "title": "PHASE",
+    "subtitle": "Post-Harvest Analysis & Simulation Engine для облученных пищевых продуктов",
+    "badge": "IRRAFRESH DSS",
     "disclaimer": "Относительная симуляция. Не заменяет промышленную валидацию."
   },
   "controls": {
     "title": "Логистические параметры",
     "product": "Продукт",
     "language": "Язык",
+    "route": "Логистический профиль",
     "dose": "Гамма-доза",
     "temperature": "Температура",
     "humidity": "Относительная влажность",
     "transport": "Часы транспортировки",
+    "transportType": "Тип транспорта",
+    "refrigeratedStorage": "Охлаждаемое хранение",
+    "enabled": "Активно",
+    "disabled": "Неактивно",
+    "lotValue": "Оценочная стоимость партии (USD)",
     "coldChain": "Сбой холодовой цепи",
+    "failureHours": "Часы сбоя охлаждения",
+    "logisticsEvents": "Логистические события",
+    "delayHours": "Часы задержки",
+    "thermalExposureHours": "Часы теплового воздействия",
+    "extendedStorageHours": "Часы продленного хранения",
+    "quickScenarios": "Быстрые сценарии",
     "simulate": "Запустить симуляцию",
     "tomato": "Томат",
     "strawberry": "Клубника",
+    "potato": "Картофель",
     "normal": "Стабильная работа",
     "failure": "Активный сбой"
+  },
+  "routes": {
+    "optimal_cold_chain": "Оптимальная холодовая цепь",
+    "export_stress": "Экспортный стресс-сценарий",
+    "ambient_long_distance": "Длительная перевозка без стабильного холода"
+  },
+  "transportTypes": {
+    "refrigerated_truck": "Рефрижераторный грузовик",
+    "ambient_truck": "Обычный грузовик",
+    "mixed_cargo": "Смешанный груз",
+    "air_cargo": "Авиагруз"
+  },
+  "scenarios": {
+    "optimalColdChain": "Optimal Cold Chain",
+    "exportStress": "Export Stress Scenario",
+    "refrigerationFailure": "Refrigeration Failure",
+    "highHumidityStorage": "High Humidity Storage",
+    "longDistanceTransport": "Long Distance Transport"
   },
   "dashboard": {
     "quality": "Оставшееся качество",
@@ -31,7 +62,15 @@
     "recommendations": "Рекомендации",
     "alerts": "Динамические предупреждения",
     "modelNotes": "Примечания модели",
-    "delta": "разница"
+    "delta": "разница",
+    "economicImpact": "Экономическое влияние",
+    "estimatedLossValue": "Оценка потерь",
+    "potentialSavings": "Потенциальная экономия от облучения",
+    "digitalTwin": "Упрощенный цифровой двойник",
+    "route": "Маршрут",
+    "logisticsStress": "Логистический стресс",
+    "microbialReduction": "Относительное снижение микробной нагрузки",
+    "eventTimeline": "Линия событий"
   },
   "confidence": {
     "LOW": "Низкая уверенность",
@@ -51,7 +90,9 @@
     "day": "День",
     "irradiated": "Облученный",
     "nonIrradiated": "Необлученный",
-    "quality": "Качество"
+    "quality": "Качество",
+    "uncertaintyHigh": "Верхняя граница",
+    "uncertaintyLow": "Нижняя граница"
   },
   "recommendations": {
     "restore_cold_chain": "Восстановить охлаждение и приоритизировать проверку партии.",
@@ -59,17 +100,38 @@
     "adjust_humidity": "Настроить влажность ближе к оптимальному диапазону продукта.",
     "evaluate_higher_dose": "Оценить умеренно более высокую дозу в безопасных пределах.",
     "shorten_transport_window": "Сократить окно транспортировки или добавить логистический перегруз.",
+    "reduce_logistics_stress": "Выбрать охлаждаемый маршрут или сократить точки перегрузки.",
+    "reduce_thermal_exposure": "Сократить тепловое воздействие или улучшить изоляцию партии.",
+    "manage_transport_delay": "Снизить задержку с помощью логистического резерва или переноса.",
+    "limit_extended_storage": "Ограничить продленное хранение перед дистрибуцией.",
     "prioritize_fast_distribution": "Приоритизировать быструю дистрибуцию и контроль качества.",
     "scenario_within_operational_window": "Сценарий находится в разумном операционном диапазоне."
   },
   "alerts": {
     "cold_chain_failure_active": "Активен сбой холодовой цепи: в симуляции ухудшение ускоряется.",
+    "logistics_event_active": "Активны логистические события: симуляция корректирует ухудшение и риск.",
     "none": "Критических предупреждений для текущего сценария нет."
   },
+  "events": {
+    "coldChain": "Сбой холода",
+    "delay": "Задержка",
+    "thermal": "Тепловое воздействие",
+    "storage": "Хранение",
+    "active": "Активно",
+    "inactive": "Нет события"
+  },
   "notes": {
-    "simplified_exponential_decay": "Упрощенное экспоненциальное ухудшение.",
+    "composite_quality_index": "Q объединяет свежесть, микробиологическую стабильность, коммерческую ценность и послеуборочную целостность.",
+    "dynamic_k_logistics_stress": "k(t) меняется в зависимости от температуры, влажности, дозы и логистического стресса.",
+    "literature_inspired_parameters": "Параметры вдохновлены IAEA, FAO, WHO, USDA и литературой по сроку хранения.",
     "relative_risk_not_industrial_prediction": "Относительный анализ, не точный промышленный прогноз.",
     "ranges_include_operational_uncertainty": "Диапазоны включают операционную неопределенность."
+  },
+  "twin": {
+    "digital_twin_batch_transport": "Каждая симуляция концептуально представляет сельскохозяйственную партию во время транспортировки, пересчитывая ухудшение, риск, экономику и неопределенность по сценарию."
+  },
+  "science": {
+    "pitch": "Платформа симуляции и поддержки решений для послеуборочной логистики облученных пищевых продуктов."
   },
   "errors": {
     "simulation_failed": "Симуляция не выполнена. Используются mock-данные для демо."

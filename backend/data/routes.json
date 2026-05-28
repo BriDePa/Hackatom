@@ -1,0 +1,32 @@
+[
+  {
+    "id": "optimal_cold_chain",
+    "name": "Optimal Cold Chain",
+    "duration_hours": 18,
+    "average_temperature": 4,
+    "refrigeration": true,
+    "delay_risk": 0.12,
+    "thermal_stability": 0.88,
+    "logistics_stress": 0.18
+  },
+  {
+    "id": "export_stress",
+    "name": "Export Stress Scenario",
+    "duration_hours": 48,
+    "average_temperature": 14,
+    "refrigeration": true,
+    "delay_risk": 0.46,
+    "thermal_stability": 0.58,
+    "logistics_stress": 0.62
+  },
+  {
+    "id": "ambient_long_distance",
+    "name": "Long Distance Transport",
+    "duration_hours": 72,
+    "average_temperature": 22,
+    "refrigeration": false,
+    "delay_risk": 0.58,
+    "thermal_stability": 0.36,
+    "logistics_stress": 0.76
+  }
+]

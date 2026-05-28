@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from app.models.simulation import SimulationRequest, SimulationResponse
 from app.services.product_repository import load_products
+from app.services.route_repository import load_routes
 from app.services.simulation_engine import simulate_postharvest
 
 
@@ -18,12 +19,17 @@ async def products() -> list[dict[str, str]]:
     return [
         {
             "id": product.id,
-            "name_es": product.name_es,
-            "name_en": product.name_en,
-            "name_ru": product.name_ru,
+            "name_es": product.name["es"],
+            "name_en": product.name["en"],
+            "name_ru": product.name["ru"],
         }
         for product in load_products().values()
     ]
+
+
+@router.get("/routes")
+async def routes() -> list[dict[str, str | int | float | bool]]:
+    return [route.model_dump() for route in load_routes().values()]
 
 
 @router.post("/simulate", response_model=SimulationResponse)

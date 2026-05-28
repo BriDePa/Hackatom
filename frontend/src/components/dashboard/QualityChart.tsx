@@ -1,7 +1,8 @@
 import {
   CartesianGrid,
+  Area,
+  AreaChart,
   Line,
-  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -29,7 +30,7 @@ export function QualityChart({ data }: QualityChartProps) {
       </div>
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data} margin={{ top: 10, right: 20, bottom: 0, left: -20 }}>
+          <AreaChart data={data} margin={{ top: 10, right: 20, bottom: 0, left: -20 }}>
             <CartesianGrid stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4" />
             <XAxis dataKey="day" stroke="rgba(236,255,247,0.65)" label={{ value: t("chart.day"), position: "insideBottom", offset: -2 }} />
             <YAxis stroke="rgba(236,255,247,0.65)" domain={[30, 100]} />
@@ -40,6 +41,22 @@ export function QualityChart({ data }: QualityChartProps) {
                 borderRadius: 8,
                 color: "#ecfff7",
               }}
+            />
+            <Area
+              type="monotone"
+              dataKey="irradiated_high"
+              name={t("chart.uncertaintyHigh")}
+              stroke="transparent"
+              fill="rgba(87,255,154,0.10)"
+              dot={false}
+            />
+            <Area
+              type="monotone"
+              dataKey="irradiated_low"
+              name={t("chart.uncertaintyLow")}
+              stroke="transparent"
+              fill="#07110f"
+              dot={false}
             />
             <Line
               type="monotone"
@@ -58,7 +75,7 @@ export function QualityChart({ data }: QualityChartProps) {
               strokeDasharray="6 5"
               dot={false}
             />
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
       </div>
     </Card>

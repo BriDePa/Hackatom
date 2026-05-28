@@ -1,0 +1,68 @@
+[
+  {
+    "id": "tomato",
+    "name": {
+      "es": "Tomate",
+      "en": "Tomato",
+      "ru": "Томат"
+    },
+    "base_shelf_life_days": 12,
+    "optimal_temperature": 12,
+    "optimal_humidity": 85,
+    "respiration_factor": 0.46,
+    "microbial_sensitivity": 0.52,
+    "irradiation_sensitivity": 0.48,
+    "base_k": 0.028,
+    "economic_value_per_kg": 2.5,
+    "transport_sensitivity": 0.62,
+    "literature_basis": [
+      "FAO post-harvest temperature and humidity guidance",
+      "IAEA/FAO food irradiation preservation guidance",
+      "Tomato shelf-life and ripening studies using ionizing radiation"
+    ]
+  },
+  {
+    "id": "strawberry",
+    "name": {
+      "es": "Fresa",
+      "en": "Strawberry",
+      "ru": "Клубника"
+    },
+    "base_shelf_life_days": 6,
+    "optimal_temperature": 4,
+    "optimal_humidity": 90,
+    "respiration_factor": 0.78,
+    "microbial_sensitivity": 0.82,
+    "irradiation_sensitivity": 0.64,
+    "base_k": 0.052,
+    "economic_value_per_kg": 4.2,
+    "transport_sensitivity": 0.84,
+    "literature_basis": [
+      "Postharvest strawberry decay and high respiration behavior",
+      "Gamma irradiation studies in refrigerated strawberries",
+      "Cold chain deterioration and microbial quality guidance"
+    ]
+  },
+  {
+    "id": "potato",
+    "name": {
+      "es": "Papa",
+      "en": "Potato",
+      "ru": "Картофель"
+    },
+    "base_shelf_life_days": 45,
+    "optimal_temperature": 10,
+    "optimal_humidity": 92,
+    "respiration_factor": 0.24,
+    "microbial_sensitivity": 0.34,
+    "irradiation_sensitivity": 0.72,
+    "base_k": 0.014,
+    "economic_value_per_kg": 1.4,
+    "transport_sensitivity": 0.38,
+    "literature_basis": [
+      "Post-harvest potato sprouting and storage literature",
+      "Gamma irradiation studies for sprout inhibition",
+      "Root and tuber crop storage guidance"
+    ]
+  }
+]

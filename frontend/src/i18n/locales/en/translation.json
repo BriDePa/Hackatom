@@ -1,24 +1,55 @@
 {
   "app": {
-    "title": "IRRAFRESH",
-    "subtitle": "Irradiation-powered post-harvest logistics intelligence",
-    "badge": "Scientific MVP",
+    "title": "PHASE",
+    "subtitle": "Post-Harvest Analysis & Simulation Engine for irradiated foods",
+    "badge": "IRRAFRESH DSS",
     "disclaimer": "Relative simulation. It does not replace industrial validation."
   },
   "controls": {
     "title": "Logistics parameters",
     "product": "Product",
     "language": "Language",
+    "route": "Logistics profile",
     "dose": "Gamma dose",
     "temperature": "Temperature",
     "humidity": "Relative humidity",
     "transport": "Transport hours",
+    "transportType": "Transport type",
+    "refrigeratedStorage": "Refrigerated storage",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "lotValue": "Estimated lot value (USD)",
     "coldChain": "Cold chain failure",
+    "failureHours": "Refrigeration failure hours",
+    "logisticsEvents": "Logistics events",
+    "delayHours": "Delay hours",
+    "thermalExposureHours": "Thermal exposure hours",
+    "extendedStorageHours": "Extended storage hours",
+    "quickScenarios": "Quick scenarios",
     "simulate": "Simulate scenario",
     "tomato": "Tomato",
     "strawberry": "Strawberry",
+    "potato": "Potato",
     "normal": "Stable operation",
     "failure": "Active failure"
+  },
+  "routes": {
+    "optimal_cold_chain": "Optimal Cold Chain",
+    "export_stress": "Export Stress Scenario",
+    "ambient_long_distance": "Long Distance Transport"
+  },
+  "transportTypes": {
+    "refrigerated_truck": "Refrigerated truck",
+    "ambient_truck": "Ambient truck",
+    "mixed_cargo": "Mixed cargo",
+    "air_cargo": "Air cargo"
+  },
+  "scenarios": {
+    "optimalColdChain": "Optimal Cold Chain",
+    "exportStress": "Export Stress Scenario",
+    "refrigerationFailure": "Refrigeration Failure",
+    "highHumidityStorage": "High Humidity Storage",
+    "longDistanceTransport": "Long Distance Transport"
   },
   "dashboard": {
     "quality": "Remaining quality",
@@ -31,7 +62,15 @@
     "recommendations": "Recommendations",
     "alerts": "Dynamic alerts",
     "modelNotes": "Model notes",
-    "delta": "delta"
+    "delta": "delta",
+    "economicImpact": "Economic impact",
+    "estimatedLossValue": "Estimated loss",
+    "potentialSavings": "Potential savings from irradiation",
+    "digitalTwin": "Simplified digital twin",
+    "route": "Route",
+    "logisticsStress": "Logistics stress",
+    "microbialReduction": "Relative microbial reduction",
+    "eventTimeline": "Event timeline"
   },
   "confidence": {
     "LOW": "Low confidence",
@@ -51,7 +90,9 @@
     "day": "Day",
     "irradiated": "Irradiated",
     "nonIrradiated": "Non-irradiated",
-    "quality": "Quality"
+    "quality": "Quality",
+    "uncertaintyHigh": "Upper band",
+    "uncertaintyLow": "Lower band"
   },
   "recommendations": {
     "restore_cold_chain": "Restore refrigeration and prioritize lot inspection.",
@@ -59,17 +100,38 @@
     "adjust_humidity": "Adjust humidity toward the product's optimal range.",
     "evaluate_higher_dose": "Evaluate a higher moderate dose within safe limits.",
     "shorten_transport_window": "Shorten the transport window or add a logistics relay.",
+    "reduce_logistics_stress": "Choose refrigerated routing or reduce transfer points.",
+    "reduce_thermal_exposure": "Reduce thermal exposure or improve lot insulation.",
+    "manage_transport_delay": "Mitigate delay with a logistics relay or rescheduling.",
+    "limit_extended_storage": "Limit extended storage before distribution.",
     "prioritize_fast_distribution": "Prioritize fast distribution and quality control.",
     "scenario_within_operational_window": "Scenario is within a reasonable operating window."
   },
   "alerts": {
     "cold_chain_failure_active": "Cold chain failure active: deterioration accelerates in the simulation.",
+    "logistics_event_active": "Logistics events active: the simulation adjusts deterioration and risk.",
     "none": "No critical alerts for the current scenario."
   },
+  "events": {
+    "coldChain": "Cold failure",
+    "delay": "Delay",
+    "thermal": "Thermal exposure",
+    "storage": "Storage",
+    "active": "Active",
+    "inactive": "No event"
+  },
   "notes": {
-    "simplified_exponential_decay": "Simplified exponential decay.",
+    "composite_quality_index": "Q combines freshness, microbiological stability, commercial value, and post-harvest integrity.",
+    "dynamic_k_logistics_stress": "k(t) changes with temperature, humidity, dose, and logistics stress.",
+    "literature_inspired_parameters": "Parameters are inspired by IAEA, FAO, WHO, USDA, and shelf-life literature.",
     "relative_risk_not_industrial_prediction": "Relative analysis, not an exact industrial prediction.",
     "ranges_include_operational_uncertainty": "Ranges include operational uncertainty."
+  },
+  "twin": {
+    "digital_twin_batch_transport": "Each simulation conceptually represents an agricultural lot during transport, recalculating deterioration, risk, economics, and uncertainty by scenario."
+  },
+  "science": {
+    "pitch": "Simulation and decision-support platform for post-harvest logistics of irradiated foods."
   },
   "errors": {
     "simulation_failed": "Simulation could not run. Using mock demo data."
