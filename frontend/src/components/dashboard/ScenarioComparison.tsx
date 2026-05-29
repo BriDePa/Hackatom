@@ -14,12 +14,12 @@ export function ScenarioComparison({ data }: ScenarioComparisonProps) {
 
   return (
     <Card className="p-5">
-      <p className="text-sm text-emerald-50/60">{t("dashboard.comparison")}</p>
+      <p className="text-sm text-ink/60">{t("dashboard.comparison")}</p>
       <div className="mt-5 grid gap-4">
-        <MetricBar label={t("chart.irradiated")} value={lastPoint.irradiated} tone="bio" />
-        <MetricBar label={t("chart.nonIrradiated")} value={lastPoint.non_irradiated} tone="ion" />
+        <MetricBar label={t("chart.irradiated")} value={lastPoint.irradiated} barColor="bg-indicator-accent" valueColor="text-indicator-accent" />
+        <MetricBar label={t("chart.nonIrradiated")} value={lastPoint.non_irradiated} barColor="bg-inkLight/40" valueColor="text-inkLight" />
       </div>
-      <p className="mt-4 font-mono text-sm text-bio">
+      <p className="mt-4 font-mono text-sm text-indicator-accent">
         +{gain.toFixed(1)}% {t("dashboard.delta")}
       </p>
     </Card>
@@ -29,20 +29,19 @@ export function ScenarioComparison({ data }: ScenarioComparisonProps) {
 interface MetricBarProps {
   label: string;
   value: number;
-  tone: "bio" | "ion";
+  barColor: string;
+  valueColor: string;
 }
 
-function MetricBar({ label, value, tone }: MetricBarProps) {
-  const color = tone === "bio" ? "bg-bio" : "bg-ion";
-
+function MetricBar({ label, value, barColor, valueColor }: MetricBarProps) {
   return (
     <div>
-      <div className="mb-2 flex justify-between text-sm text-emerald-50/75">
+      <div className="mb-2 flex justify-between text-sm text-ink/75">
         <span>{label}</span>
-        <span>{value.toFixed(1)}%</span>
+        <span className={valueColor}>{value.toFixed(1)}%</span>
       </div>
-      <div className="h-2 rounded-full bg-white/10">
-        <div className={`${color} h-2 rounded-full`} style={{ width: `${value}%` }} />
+      <div className="h-2 rounded-full bg-stroke/10">
+        <div className={`${barColor} h-2 rounded-full`} style={{ width: `${value}%` }} />
       </div>
     </div>
   );

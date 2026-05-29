@@ -14,12 +14,12 @@ export function EconomicImpact({ simulation, formatRange }: EconomicImpactProps)
 
   return (
     <Card className="p-5">
-      <p className="text-sm text-emerald-50/60">{t("dashboard.economicImpact")}</p>
+      <p className="text-sm text-ink/60">{t("dashboard.economicImpact")}</p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-lg border border-danger/20 bg-danger/10 p-4">
-          <TrendingDown className="mb-3 h-5 w-5 text-danger" />
-          <p className="text-sm text-emerald-50/65">{t("dashboard.estimatedLossValue")}</p>
-          <p className="mt-2 font-mono text-2xl text-emerald-50">
+        <div className="rounded-lg border border-indicator-loss/20 bg-indicator-loss/10 p-4">
+          <TrendingDown className="mb-3 h-5 w-5 text-indicator-loss" />
+          <p className="text-sm text-ink/65">{t("dashboard.estimatedLossValue")}</p>
+          <p className="mt-2 font-mono text-2xl text-indicator-loss">
             {formatRange(
               simulation.estimated_loss_value.min,
               simulation.estimated_loss_value.max,
@@ -27,10 +27,10 @@ export function EconomicImpact({ simulation, formatRange }: EconomicImpactProps)
             )}
           </p>
         </div>
-        <div className="rounded-lg border border-bio/20 bg-bio/10 p-4">
-          <Banknote className="mb-3 h-5 w-5 text-bio" />
-          <p className="text-sm text-emerald-50/65">{t("dashboard.potentialSavings")}</p>
-          <p className="mt-2 font-mono text-2xl text-emerald-50">
+        <div className="rounded-lg border border-indicator-savings/20 bg-indicator-savings/10 p-4">
+          <Banknote className="mb-3 h-5 w-5 text-indicator-savings" />
+          <p className="text-sm text-ink/65">{t("dashboard.potentialSavings")}</p>
+          <p className="mt-2 font-mono text-2xl text-indicator-savings">
             {formatRange(
               simulation.potential_savings_value.min,
               simulation.potential_savings_value.max,

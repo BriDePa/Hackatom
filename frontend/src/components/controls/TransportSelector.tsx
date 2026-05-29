@@ -50,9 +50,9 @@ export function TransportSelector({
 
   return (
     <div className="grid gap-4">
-      <label className="grid gap-2 text-sm text-emerald-50/80">
+      <label className="grid gap-2 text-sm text-ink/80">
         <span className="flex items-center gap-2">
-          <Truck className="h-4 w-4 text-ion" />
+          <Truck className="h-4 w-4 text-inkLight" />
           {t("controls.route")}
         </span>
         <select
@@ -60,14 +60,14 @@ export function TransportSelector({
           onChange={(event) =>
             onRouteChange(event.target.value as "optimal_cold_chain" | "export_stress" | "ambient_long_distance")
           }
-          className="rounded-lg border border-white/10 bg-carbon px-3 py-3 text-emerald-50 outline-none ring-ion/30 focus:ring-2"
+          className="rounded-lg border border-stroke/10 bg-white px-3 py-3 text-ink outline-none ring-stroke/30 focus:ring-2"
         >
           <option value="optimal_cold_chain">{t("routes.optimal_cold_chain")}</option>
           <option value="export_stress">{t("routes.export_stress")}</option>
           <option value="ambient_long_distance">{t("routes.ambient_long_distance")}</option>
         </select>
       </label>
-      <label className="grid gap-2 text-sm text-emerald-50/80">
+      <label className="grid gap-2 text-sm text-ink/80">
         <span>{t("controls.transportType")}</span>
         <select
           value={transportType}
@@ -76,7 +76,7 @@ export function TransportSelector({
               event.target.value as "refrigerated_truck" | "ambient_truck" | "mixed_cargo" | "air_cargo",
             )
           }
-          className="rounded-lg border border-white/10 bg-carbon px-3 py-3 text-emerald-50 outline-none ring-ion/30 focus:ring-2"
+          className="rounded-lg border border-stroke/10 bg-white px-3 py-3 text-ink outline-none ring-stroke/30 focus:ring-2"
         >
           <option value="refrigerated_truck">{t("transportTypes.refrigerated_truck")}</option>
           <option value="ambient_truck">{t("transportTypes.ambient_truck")}</option>
@@ -84,9 +84,9 @@ export function TransportSelector({
           <option value="air_cargo">{t("transportTypes.air_cargo")}</option>
         </select>
       </label>
-      <label className="grid gap-2 text-sm text-emerald-50/80">
+      <label className="grid gap-2 text-sm text-ink/80">
         <span className="flex items-center gap-2">
-          <Truck className="h-4 w-4 text-ion" />
+          <Truck className="h-4 w-4 text-inkLight" />
           {t("controls.transport")}
         </span>
         <input
@@ -95,10 +95,10 @@ export function TransportSelector({
           max={240}
           value={value}
           onChange={(event) => onTransportChange(Number(event.target.value))}
-          className="rounded-lg border border-white/10 bg-carbon px-3 py-3 text-emerald-50 outline-none ring-ion/30 focus:ring-2"
+          className="rounded-lg border border-stroke/10 bg-white px-3 py-3 text-ink outline-none ring-stroke/30 focus:ring-2"
         />
       </label>
-      <label className="grid gap-2 text-sm text-emerald-50/80">
+      <label className="grid gap-2 text-sm text-ink/80">
         <span>{t("controls.lotValue")}</span>
         <input
           type="number"
@@ -106,33 +106,33 @@ export function TransportSelector({
           max={100000}
           value={lotValue}
           onChange={(event) => onLotValueChange(Number(event.target.value))}
-          className="rounded-lg border border-white/10 bg-carbon px-3 py-3 text-emerald-50 outline-none ring-ion/30 focus:ring-2"
+          className="rounded-lg border border-stroke/10 bg-white px-3 py-3 text-ink outline-none ring-stroke/30 focus:ring-2"
         />
       </label>
       <button
         type="button"
         onClick={() => onRefrigeratedStorageChange(!refrigeratedStorage)}
-        className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-left text-sm text-emerald-50 transition hover:border-cyan-300/50"
+        className="flex items-center justify-between rounded-lg border border-stroke/10 bg-stroke/[0.04] px-4 py-3 text-left text-sm text-ink transition hover:border-stroke/40"
         aria-pressed={refrigeratedStorage}
       >
         <span>{t("controls.refrigeratedStorage")}</span>
-        <span className={refrigeratedStorage ? "text-bio" : "text-warning"}>
+        <span className={refrigeratedStorage ? "text-stroke" : "text-stroke/60"}>
           {refrigeratedStorage ? t("controls.enabled") : t("controls.disabled")}
         </span>
       </button>
       <button
         type="button"
         onClick={() => onColdChainChange(!coldChainFailure)}
-        className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-left text-sm text-emerald-50 transition hover:border-cyan-300/50"
+        className="flex items-center justify-between rounded-lg border border-stroke/10 bg-stroke/[0.04] px-4 py-3 text-left text-sm text-ink transition hover:border-stroke/40"
         aria-pressed={coldChainFailure}
       >
         <span>{t("controls.coldChain")}</span>
-        <span className={coldChainFailure ? "text-danger" : "text-bio"}>
+        <span className={coldChainFailure ? "text-stroke" : "text-stroke/60"}>
           {coldChainFailure ? t("controls.failure") : t("controls.normal")}
         </span>
       </button>
       {coldChainFailure ? (
-        <label className="grid gap-2 text-sm text-emerald-50/80">
+        <label className="grid gap-2 text-sm text-ink/80">
           <span>{t("controls.failureHours")}</span>
           <input
             type="number"
@@ -140,12 +140,12 @@ export function TransportSelector({
             max={48}
             value={coldChainFailureHours}
             onChange={(event) => onColdChainHoursChange(Number(event.target.value))}
-            className="rounded-lg border border-danger/30 bg-carbon px-3 py-3 text-emerald-50 outline-none ring-danger/30 focus:ring-2"
+            className="rounded-lg border border-stroke/30 bg-white px-3 py-3 text-ink outline-none ring-stroke/30 focus:ring-2"
           />
         </label>
       ) : null}
-      <div className="grid gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-3">
-        <p className="text-sm font-semibold text-emerald-50/80">{t("controls.logisticsEvents")}</p>
+      <div className="grid gap-3 rounded-lg border border-stroke/10 bg-stroke/[0.035] p-3">
+        <p className="text-sm font-semibold text-ink/80">{t("controls.logisticsEvents")}</p>
         <EventInput label={t("controls.delayHours")} value={delayHours} max={96} onChange={onDelayHoursChange} />
         <EventInput
           label={t("controls.thermalExposureHours")}
@@ -173,7 +173,7 @@ interface EventInputProps {
 
 function EventInput({ label, value, max, onChange }: EventInputProps) {
   return (
-    <label className="grid gap-1 text-xs text-emerald-50/70">
+    <label className="grid gap-1 text-xs text-ink/70">
       <span>{label}</span>
       <input
         type="number"
@@ -181,7 +181,7 @@ function EventInput({ label, value, max, onChange }: EventInputProps) {
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="rounded-md border border-white/10 bg-carbon px-3 py-2 text-sm text-emerald-50 outline-none ring-ion/30 focus:ring-2"
+        className="rounded-md border border-stroke/10 bg-white px-3 py-2 text-sm text-ink outline-none ring-stroke/30 focus:ring-2"
       />
     </label>
   );

@@ -12,15 +12,15 @@ export function ProductSelector({ value, onChange }: ProductSelectorProps) {
   const { t } = useTranslation();
 
   return (
-    <label className="grid gap-2 text-sm text-emerald-50/80">
+    <label className="grid gap-2 text-sm text-ink/80">
       <span className="flex items-center gap-2">
-        <Sprout className="h-4 w-4 text-bio" />
+        <Sprout className="h-4 w-4 text-stroke" />
         {t("controls.product")}
       </span>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value as SimulationInput["product"])}
-        className="rounded-lg border border-white/10 bg-carbon px-3 py-3 text-emerald-50 outline-none ring-bio/30 focus:ring-2"
+        className="rounded-lg border border-stroke/10 bg-white px-3 py-3 text-ink outline-none ring-stroke/30 focus:ring-2"
       >
         <option value="tomato">{t("controls.tomato")}</option>
         <option value="strawberry">{t("controls.strawberry")}</option>

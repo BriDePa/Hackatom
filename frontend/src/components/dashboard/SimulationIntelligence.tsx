@@ -15,11 +15,11 @@ export function SimulationIntelligence({ simulation, formatRange }: SimulationIn
 
   return (
     <Card className="p-5">
-      <div className="flex items-center gap-2 text-sm text-emerald-50/60">
-        <BrainCircuit className="h-4 w-4 text-ion" />
+      <div className="flex items-center gap-2 text-sm text-ink/60">
+        <BrainCircuit className="h-4 w-4 text-inkLight" />
         {t("dashboard.digitalTwin")}
       </div>
-      <p className="mt-3 text-sm leading-6 text-emerald-50/80">{t(`twin.${simulation.digital_twin_summary}`)}</p>
+      <p className="mt-3 text-sm leading-6 text-ink/80">{t(`twin.${simulation.digital_twin_summary}`)}</p>
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
         <Metric icon={<Route className="h-4 w-4" />} label={t("dashboard.route")} value={simulation.route} />
         <Metric
@@ -49,10 +49,10 @@ interface MetricProps {
 
 function Metric({ icon, label, value }: MetricProps) {
   return (
-    <div className="rounded-lg bg-white/[0.04] p-3">
-      <div className="mb-2 flex items-center gap-2 text-ion">{icon}</div>
-      <p className="text-xs text-emerald-50/55">{label}</p>
-      <p className="mt-1 text-sm font-semibold text-emerald-50">{value}</p>
+    <div className="rounded-lg bg-stroke/[0.04] p-3">
+      <div className="mb-2 flex items-center gap-2 text-inkLight">{icon}</div>
+      <p className="text-xs text-ink/55">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-ink">{value}</p>
     </div>
   );
 }

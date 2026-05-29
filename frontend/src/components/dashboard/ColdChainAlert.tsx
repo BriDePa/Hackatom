@@ -12,12 +12,12 @@ export function ColdChainAlert({ alert }: ColdChainAlertProps) {
   const message = alert ? t(`alerts.${alert}`) : t("alerts.none");
 
   return (
-    <Card className={`p-5 ${alert ? "border-danger/40" : "border-bio/30"}`}>
+    <Card className={`p-5 ${alert ? "border-indicator-loss/30" : "border-indicator-savings/30"}`}>
       <div className="flex gap-3">
-        <ThermometerSnowflake className={`h-5 w-5 shrink-0 ${alert ? "text-danger" : "text-bio"}`} />
+        <ThermometerSnowflake className={`h-5 w-5 shrink-0 ${alert ? "text-indicator-loss" : "text-indicator-savings"}`} />
         <div>
-          <p className="text-sm text-emerald-50/60">{t("dashboard.alerts")}</p>
-          <p className="mt-2 text-sm text-emerald-50/90">{message}</p>
+          <p className="text-sm text-ink/60">{t("dashboard.alerts")}</p>
+          <p className="mt-2 text-sm text-ink/90">{message}</p>
         </div>
       </div>
     </Card>

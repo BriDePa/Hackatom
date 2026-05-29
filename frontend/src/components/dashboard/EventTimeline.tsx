@@ -35,13 +35,13 @@ export function EventTimeline({ data }: EventTimelineProps) {
 
   return (
     <Card className="p-5">
-      <p className="text-sm text-emerald-50/60">{t("dashboard.eventTimeline")}</p>
+      <p className="text-sm text-ink/60">{t("dashboard.eventTimeline")}</p>
       <div className="mt-4 grid gap-3 sm:grid-cols-4">
         {events.map((event) => (
           <div
             key={event.key}
             className={`rounded-lg border p-3 ${
-              event.active ? "border-warning/40 bg-warning/10 text-warning" : "border-white/10 bg-white/[0.04] text-emerald-50/55"
+              event.active ? "border-indicator-warning/40 bg-indicator-warning/10 text-indicator-warning" : "border-stroke/10 bg-stroke/[0.04] text-ink/55"
             }`}
           >
             <div className="mb-2">{event.icon}</div>
