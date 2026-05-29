@@ -45,11 +45,11 @@
     "air_cargo": "Carga aerea"
   },
   "scenarios": {
-    "optimalColdChain": "Optimal Cold Chain",
-    "exportStress": "Export Stress Scenario",
-    "refrigerationFailure": "Refrigeration Failure",
-    "highHumidityStorage": "High Humidity Storage",
-    "longDistanceTransport": "Long Distance Transport"
+    "optimalColdChain": "Cadena de frio optima",
+    "exportStress": "Escenario de estres exportador",
+    "refrigerationFailure": "Falla de refrigeracion",
+    "highHumidityStorage": "Almacenamiento con alta humedad",
+    "longDistanceTransport": "Transporte de larga distancia"
   },
   "dashboard": {
     "quality": "Calidad restante",

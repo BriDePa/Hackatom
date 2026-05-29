@@ -45,11 +45,11 @@
     "air_cargo": "Авиагруз"
   },
   "scenarios": {
-    "optimalColdChain": "Optimal Cold Chain",
-    "exportStress": "Export Stress Scenario",
-    "refrigerationFailure": "Refrigeration Failure",
-    "highHumidityStorage": "High Humidity Storage",
-    "longDistanceTransport": "Long Distance Transport"
+    "optimalColdChain": "Оптимальная холодовая цепь",
+    "exportStress": "Экспортный стресс-сценарий",
+    "refrigerationFailure": "Сбой холодовой цепи",
+    "highHumidityStorage": "Хранение при высокой влажности",
+    "longDistanceTransport": "Длинная транспортировка"
   },
   "dashboard": {
     "quality": "Оставшееся качество",
